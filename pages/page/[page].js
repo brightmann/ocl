@@ -4,8 +4,8 @@ import Banner from "../../components/Banner";
 import Sidebar from "../../components/Sidebar"
 import { sortByDate, ImageUrl,pageCount } from '../../utils'
 
-import { allPosts } from "contentlayer/generated";
-import { pick } from "@contentlayer/client";
+import { allPosts } from "../../utils/generated-posts";
+import { pick } from "../../utils";
 import Pagnation from '../../components/Pagnation';
 import { show_per_page } from "../../config"
 

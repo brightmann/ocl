@@ -1,31 +1,14 @@
 import Link from 'next/link'
 import { slugify, ImageUrl } from '../../utils'
 import { NextSeo } from 'next-seo';
-import Login from '../../components/login';
-import { useSession, getProviders } from "next-auth/react"
-import { allPosts } from "contentlayer/generated";
+import { allPosts } from "../../utils/generated-posts";
 
-export default function PostPage({ post, providers }) {
+export default function PostPage({ post }) {
 
   const date = new Date(post.date)
 
-  //  get session from next-auth
-  const { data: session, status } = useSession()
-
-  //  check status is looding or not 
-  if (status === "loading") {
-    return <div className="d-flex justify-content-center">
-      <div className="spinner-border" role="status">
-        <span className="sr-only"></span>
-      </div>
-    </div>
-  } else if (!session) {
-    //  if session is not avilable the render login page
-
-    return <Login providers={providers} />
-  } else if (session) {
-    // main component
-    return (
+  // main component
+  return (
       <>
         <NextSeo
           title={post.title}
@@ -84,7 +67,6 @@ export default function PostPage({ post, providers }) {
         </div>
       </>
     )
-  }
 }
 
 
@@ -112,11 +94,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-
-  // get provider from next-auth
-  const providers = await getProviders()
-
-
   // fetch a single post by slug
 
   const post = allPosts.find((post) => {
@@ -125,6 +102,6 @@ export async function getStaticProps({ params: { slug } }) {
 
   })
 
-  return { props: { post, providers } }
+  return { props: { post } }
 
 }

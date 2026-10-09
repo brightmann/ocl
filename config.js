@@ -1,4 +1,4 @@
-const SITE_URL= 'https://content-layer-netlifycms-vercel.vercel.app'
+const SITE_URL= 'https://ocl.luckypoem.workers.dev'
 // const SITE_URL= 'http://localhost:3000'
 // const SITE_URL= process.env.SITE_URL  // it not work
 

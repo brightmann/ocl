@@ -2,7 +2,7 @@ import Link from 'next/link'
 import ItemPost from '../../components/ItemPost'
 import { slugify, ImageUrl } from '../../utils'
 import { NextSeo } from 'next-seo';
-import { allPosts } from "contentlayer/generated";
+import { allPosts } from "../../utils/generated-posts";
 
 export default function tag({ posts }) {
   return (

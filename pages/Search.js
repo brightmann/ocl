@@ -2,7 +2,7 @@ import Post from '../components/Post'
 import Banner from "../components/Banner";
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo';
-import { allPosts } from "contentlayer/generated";
+import { allPosts } from "../utils/generated-posts";
 import { ImageUrl } from '../utils'
 
 

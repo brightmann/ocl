@@ -1,7 +1,7 @@
 import { useState} from "react";
 import Link from 'next/link'
 import { slugify } from "../utils";
-import { allPosts } from "contentlayer/generated";
+import { allPosts } from "../utils/generated-posts";
 export default function Sidebar() {
 
 

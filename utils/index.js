@@ -25,3 +25,11 @@ export function ImageUrl(url) {
   
 }
 
+
+// pick specified keys from an object (replaces @contentlayer/client pick)
+export function pick(obj, keys) {
+  return keys.reduce((acc, key) => {
+    if (key in obj) acc[key] = obj[key];
+    return acc;
+  }, {});
+}
