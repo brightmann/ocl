@@ -59,33 +59,7 @@ export default function tag({ posts }) {
 
 
 
-export async function getStaticPaths() {
-
-  let paths =[]
-// get all tag paths  
-  allPosts.map(
-    post => {
-      if (post.draft===false){
-         post.tags.map(
-              tag=> {
-                const  slug = slugify(tag)
-                paths.push({ params: { slug } })
-              }
-            )
-          
-      }
-    }
-  )
-
-  return {
-    paths,
-    fallback: false,
-  }
-  
-
-}
-
-export async function getStaticProps({ params: { slug } }) {
+export async function getServerSideProps({ params: { slug } }) {
   let posts =[]
 
 // get all tag posts base on slug  

@@ -51,40 +51,8 @@ export default function Home({ posts,totalPostCount }) {
   )
 }
 
-export async function getStaticPaths() {
-
- //  help of pick get require filter value
-  // const posts = allPosts.map((post) => pick(post, ["title", "date", "slug", "description", "draft", "image", "tags", "categories"]));
-
- 
-  // count how many pages
-  let totalPostCount = pageCount(allPosts.length)
-
-
-// totalPostCount number convert into a array
-  let pageIntoArray = Array.from(Array(totalPostCount).keys())
-
-
-  let paths=[]
-
-  pageIntoArray.map(
-    path =>   paths.push({ 
-      params: { page: `${path + 1}` } 
-    })
-  )
-
-
-  return {
-    paths,
-    fallback: false,
-  }
-  
-
-}
-
-
 // fetch all posts 
-export async function getStaticProps({params}) {
+export async function getServerSideProps({params}) {
 
 //   help of pick get require filter value
   const posts = allPosts.map((post) => pick(post, ["title", "date", "slug", "description", "draft", "image", "tags", "categories","id"]));

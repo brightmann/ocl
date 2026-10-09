@@ -61,34 +61,7 @@ export default function Category({ posts }) {
 }
 
 
-export async function getStaticPaths() {
-
-  let paths =[]
-
-  // get all category paths  
-  allPosts.map(
-    post => {
-      if (post.draft===false){
-         post.categories.map(
-              category=> {
-                const  slug = slugify(category)
-                paths.push({ params: { slug } })
-              }
-            )
-          
-      }
-    }
-  )
-
-  return {
-    paths,
-    fallback: false,
-  }
-  
-
-}
-
-export async function getStaticProps({ params: { slug } }) {
+export async function getServerSideProps({ params: { slug } }) {
 
   let posts =[]
 

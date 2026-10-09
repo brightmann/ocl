@@ -72,28 +72,7 @@ export default function PostPage({ post }) {
 
 
 
-export async function getStaticPaths() {
-
-
-
-  //  filter the post and get the publish post.
-  const posts = allPosts.filter(
-    (post, i) => {
-      return post.draft === false
-    }
-  )
-
-  // get all the post slug
-  const publish = posts.map((post) => ({ params: { slug: post.slug } }))
-
-
-  return {
-    paths: publish,
-    fallback: false,
-  }
-}
-
-export async function getStaticProps({ params: { slug } }) {
+export async function getServerSideProps({ params: { slug } }) {
   // fetch a single post by slug
 
   const post = allPosts.find((post) => {
