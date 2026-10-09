@@ -6,7 +6,8 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
-import remarkHtml from "remark-html";
+import remarkRehype from "remark-rehype";
+import rehypeStringify from "rehype-stringify";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -21,7 +22,10 @@ async function main() {
   for (const file of files) {
     const raw = fs.readFileSync(path.join(postsDir, file), "utf8");
     const { data, content } = matter(raw);
-    const processed = await remark().use(remarkHtml).process(content);
+    const processed = await remark()
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeStringify, { allowDangerousHtml: true })
+      .process(content);
     const html = processed.toString();
     const slug = data.slug || file.replace(/\.md$/, "");
 
